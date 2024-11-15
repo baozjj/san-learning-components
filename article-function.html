@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单博客文章</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="wrapper"></div>
+
+    <script>
+        function createArticle(title, likeCount) {
+            return `
+                <div class="article">
+                    <div class="title">
+                        <h1>${title}</h1>
+                        <span class="like">
+                            ❤
+                            <span class="like-count">${likeCount}</span>
+                        </span>
+                    </div>
+                    <div class="content">文章简介：这是一篇简单的博客文章的介绍</div>
+                </div>
+            `;
+        }
+
+        // 渲染多篇文章
+        const wrapper = document.querySelector('#wrapper');
+        for (let i = 0; i < 5; i++) {
+            wrapper.innerHTML += createArticle(`测试标题 ${i + 1}`, 0);
+        }
+    </script>
+
+</body>
+</html>
