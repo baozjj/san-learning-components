@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单博客文章</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="wrapper"></div>
+
+<script>
+// 文章类
+class Article {
+    constructor(title, likeCount = 0) {
+        this.initData({ title, likeCount });
+    }
+
+    // 初始化数据
+    initData(args) {
+        this.title = args.title;
+        this.likeCount = args.likeCount;
+    }
+
+    // 生成文章的 HTML 模板
+    getTemplate() {
+        return `
+            <div class="article">
+                <div class="title">
+                    <h1>${this.title}</h1>
+                    <span class="like">
+                        ❤
+                        <span class="like-count">${this.likeCount}</span>
+                    </span>
+                </div>
+                <div class="content">文章简介：这是一篇简单的博客文章的介绍</div>
+            </div>
+        `;
+    }
+
+    // 处理点赞事件
+    handleClick(e) {
+        this.likeCount++;
+        e.target.querySelector('.like-count').innerText = this.likeCount;
+    }
+
+    // 渲染文章并绑定事件
+    render() {
+        const el = document.createElement('div');
+        el.innerHTML = this.getTemplate();
+
+        // 获取点赞按钮并绑定点击事件
+        const likeButton = el.querySelector('.like');
+        likeButton.addEventListener('click', (e) => this.handleClick(e));
+
+        return el;
+    }
+}
+
+// 动态创建文章并渲染
+const wrapper = document.getElementById('wrapper');
+for (let i = 0; i < 5; i++) {
+    const article = new Article(`文章 ${i + 1}`);
+    wrapper.appendChild(article.render());
+}
+</script>
+
+</body>
+</html>
