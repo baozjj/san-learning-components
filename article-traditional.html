@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单博客文章</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="article">
+    <div class="title">
+        <h1>文章标题</h1>
+        <span class="like">
+            ❤
+            <span class="like-count">
+                0
+            </span>
+        </span>
+    </div>
+    <div class="content">文章简介：这是一篇简单的博客文章的介绍</div>
+</div>
+
+<script>
+let likeCount = 0;
+const domLike = document.querySelector('.like');
+const domLikeCount = document.querySelector('.like-count');
+
+// 点赞事件处理
+domLike.addEventListener('click', function (e) {
+    likeCount++;
+    domLikeCount.innerText = likeCount;  // 更新点赞数
+}, false);
+</script>
+
+</body>
+</html>
